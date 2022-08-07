@@ -1,5 +1,7 @@
 package com.example.signuppagedemo2;
 
+import org.springframework.http.converter.json.GsonBuilderUtils;
+
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
@@ -11,6 +13,7 @@ public class SignupForm {
     @NotBlank
     @Size(min = 6, max = 20)
     private String password;
+
 
     public String getUsername() {
         return username;

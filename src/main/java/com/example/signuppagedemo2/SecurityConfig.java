@@ -19,7 +19,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     private UserDetailsService userDetailsService;
 
     @Autowired
-    public void UserDetailsServiceImpl(@Lazy  UserDetailsService userDetailsService) {
+    public void UserDetailsServiceImpl(@Lazy UserDetailsService userDetailsService) {
         this.userDetailsService = userDetailsService;
     }
 
