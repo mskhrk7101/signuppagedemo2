@@ -11,13 +11,18 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Autowired
     JdbcTemplate jdbcTemplate;
+
+    @Autowired
+    PasswordEncoder passwordEncoder;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -31,5 +36,11 @@ public class UserDetailsServiceImpl implements UserDetailsService {
         } catch (Exception e) {
             throw new UsernameNotFoundException("user not found.", e);
         }
+    }
+
+    @Transactional
+    public void register(String username, String password, String authority) {
+        String sql = "INSERT INTO user(name, password, authority) VALUES(?, ?, ?)";
+        jdbcTemplate.update(sql, username, passwordEncoder.encode(password), authority);
     }
 }
