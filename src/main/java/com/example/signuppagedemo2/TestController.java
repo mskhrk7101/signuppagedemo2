@@ -15,6 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -34,11 +35,13 @@ public class TestController {
     }
 
     @GetMapping("/login")
+    @CrossOrigin(origins = {"http://localhost:8080"})
     public String login() {
         return "login";
     }
 
     @GetMapping("/signup")
+    @CrossOrigin(origins = {"http://localhost:8080"})
     public String newSignup(SignupForm signupForm) {
         return "signup";
     }
