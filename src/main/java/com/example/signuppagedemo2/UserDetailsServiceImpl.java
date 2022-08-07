@@ -40,12 +40,12 @@ public class UserDetailsServiceImpl implements UserDetailsService {
 
     @Transactional
     public void register(String username, String password, String authority) {
-        String sql = "INSERT INTO user(name, password, authority) VALUES(?, ?, ?)";
+        String sql = "INSERT INTO [dbo].[user](name, password, authority) VALUES(?, ?, ?)";
         jdbcTemplate.update(sql, username, passwordEncoder.encode(password), authority);
     }
 
     public boolean isExistUser(String username) {
-        String sql = "SELECT COUNT(*) FROM user WHERE name = ?";
+        String sql = "SELECT COUNT(*) FROM [dbo].[user] WHERE name = ?";
         int count = jdbcTemplate.queryForObject(sql, Integer.class, new Object[] { username });
         if (count == 0) {
             return false;
