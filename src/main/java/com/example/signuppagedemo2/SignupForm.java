@@ -14,7 +14,6 @@ public class SignupForm {
     @Size(min = 6, max = 20)
     private String password;
 
-
     public String getUsername() {
         return username;
     }
